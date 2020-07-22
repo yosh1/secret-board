@@ -7,5 +7,8 @@
     },
     "repository": "git@github.com:yoshi1125hisa/secret-board.git",
     "author": "yoshi1125hisa <yoppy1125yoppy@gmail.com>",
-    "license": "MIT"
+    "license": "MIT",
+    "dependencies": {
+        "pug": "2.0.0-rc.4"
+    }
 }
