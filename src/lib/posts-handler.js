@@ -1,4 +1,5 @@
 'use strict';
+
 const pug = require('pug');
 
 function handle(req, res) {
@@ -7,7 +8,7 @@ function handle(req, res) {
             res.writeHead(200, {
                 'Content-Type': 'text/html; charset=utf-8'
             });
-            res.end(pug.renderFile('src/views/posts.pug'));
+            res.end(pug.renderFile('./src/views/posts.pug'));
             break;
         case 'POST':
             break;
