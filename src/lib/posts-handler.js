@@ -1,6 +1,7 @@
 'use strict';
 
 const pug = require('pug');
+const util = require('./handler-util');
 const contents = [];
 
 function handle(req, res) {
@@ -9,7 +10,7 @@ function handle(req, res) {
             res.writeHead(200, {
                 'Content-Type': 'text/html; charset=utf-8'
             });
-            res.end(pug.renderFile('./src/views/posts.pug'));
+            res.end(pug.renderFile('./src/views/posts.pug', { contents: contents }));
             break;
         case 'POST':
             let body = [];
@@ -29,6 +30,7 @@ function handle(req, res) {
             })
             break;
         default:
+            util.handleBadRequest(req, res);
             break;
     }
 }

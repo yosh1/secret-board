@@ -14,7 +14,15 @@ function handleNotFound(req, res) {
     res.end('Not found');
 }
 
+function handleBadRequest(req, res) {
+    res.writeHead(400, {
+        'Content-Type': 'text/plain; charset=utf-8'
+    });
+    res.end('Bad Request');
+}
+
 module.exports = {
     handleLogout,
-    handleNotFound
+    handleNotFound,
+    handleBadRequest
 };
