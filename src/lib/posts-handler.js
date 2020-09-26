@@ -1,6 +1,7 @@
 'use strict';
 
 const pug = require('pug');
+const contents = [];
 
 function handle(req, res) {
     switch (req.method) {
@@ -22,6 +23,8 @@ function handle(req, res) {
                 const decoded = decodeURIComponent(body);
                 const content = decoded.split('content=')[1]; // key=valueのため
                 console.info('Posted: ' + content);
+                contents.push(content);
+                console.log(contents);
                 handleRedirectPosts(req, res);
             })
             break;
