@@ -1,14 +1,27 @@
 version: '3'
 services:
-  webserver:
-    build: node
-    # Must change
-    image: app-server:0.1
+  app:
+    build: ./src/
     tty: true
     volumes:
-      - ./node/app:/app
+      - ./src/:/app
     ports:
       - "8000:8000"
+  db:
+    build: ./db/
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_DB: test
+      POSTGRES_PASSWORD: admin
+    volumes:
+      # データ保持 
+      # - db_data:/var/lib/postgresql/data
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+# データ保持
+# volumes:
+#     db_data: {}
 
 # build
 # $ docker-compose build
@@ -18,3 +31,14 @@ services:
 #
 # exec terminal
 # $ docker exec -it [CONTAINER_NAME] /bin/sh
+#
+# entry DB
+# $ psql -U admin
+#
+# cache clear
+# $ docker-compose down -v
+# $ docker-compose build --no-cache
+# $ docker-compose up -
+# 
+# データ永続化の削除
+# docker-compose down -v
